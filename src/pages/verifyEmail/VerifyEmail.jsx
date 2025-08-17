@@ -58,7 +58,7 @@ const VerifyEmail = () => {
       try {
         console.log("Verifying email with:", { token, type, subdomain });
 
-        const apiUrl = `${import.meta.env.VITE_API}/api/email-verification/verify-${type}`;
+        const apiUrl = `${import.meta.env.VITE_API}/api/email-verification/verify-${type==="customer"?"customer":"user"}`;
         const response = await axios.post(apiUrl, {
           token,
           subdomain
