@@ -11,6 +11,7 @@ const api = import.meta.env.VITE_API;
 const VerifyEmail = () => {
   const [searchParams] = useSearchParams();
   const [verificationStatus, setVerificationStatus] = useState("verifying");
+  const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
   const [logoError, setLogoError] = useState(false);
   const [sellerInfo, setSellerInfo] = useState(null)
@@ -23,7 +24,7 @@ const VerifyEmail = () => {
     const controller = new AbortController();
 
     axios
-      .get(`${api}/api/seller/subdomain/${subdomain}`, {
+      .get(`${api}api/seller/subdomain/${subdomain}`, {
         signal: controller.signal,
       })
       .then((response) => {
@@ -58,7 +59,7 @@ const VerifyEmail = () => {
       try {
         console.log("Verifying email with:", { token, type, subdomain });
 
-        const apiUrl = `${import.meta.env.VITE_API}/api/email-verification/verify-${type==="customer"?"customer":"user"}`;
+        const apiUrl = `${api}api/email-verification/verify-${type === "customer" ? "customer" : "user"}`;
         const response = await axios.post(apiUrl, {
           token,
           subdomain
@@ -106,14 +107,24 @@ const VerifyEmail = () => {
       setVerificationStatus("verifying");
       setError(null);
 
-      const apiUrl = `${api}/api/email-verification/resend-${type}`;
-      const response = await axios.post(apiUrl, {
-        subdomain
-      });
+
+      const apiUrl = `${api}api/email-verification/resend-${type === "customer" ? "customer" : "user"}`;
+
+      const requestBody = {
+        email,
+      };
+
+      if (type === "customer") {
+        requestBody.subdomain = subdomain;
+      } else {
+        requestBody.role = "seller";
+      }
+
+      const response = await axios.post(apiUrl, requestBody);
 
       if (response.data.success || response.data.message) {
         toast.success(response.data.message || "Verification email resent successfully!");
-        setVerificationStatus("success");
+        setVerificationStatus("resent-verified");
       } else {
         setError(response.data.error || "Failed to resend verification email");
         setVerificationStatus("failed");
@@ -185,7 +196,15 @@ const VerifyEmail = () => {
               <Mail className={styles.errorIconSmall} />
               <span>{error}</span>
             </div>
-
+            <div className={styles.inputContainer}>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.emailInput}
+              />
+            </div>
             <div className={styles.actions}>
               <button
                 className={styles.secondaryButton}
@@ -213,6 +232,17 @@ const VerifyEmail = () => {
             </div>
           </div>
         );
+        case "resent-verified":
+        return (
+          <div className={styles.success}>
+            <div className={styles.iconContainer}>
+              <CheckCircle className={styles.successIcon} />
+            </div>
+            <h2>New Verification Email has been sent Successfully!</h2>
+            <p>Your email has recieved new verification email . Check your Email inbox to verfiy Your Account.</p>
+          </div>
+        );
+
 
       default:
         return null;

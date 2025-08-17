@@ -16,9 +16,9 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, 
-    var(--verify-email-primary, #377dff) 0%, 
-    var(--verify-email-secondary, #38cb89) 100%);
+  background: linear-gradient(135deg,
+      var(--verify-email-primary, #377dff) 0%,
+      var(--verify-email-secondary, #38cb89) 100%);
   opacity: 0.05;
   z-index: 0;
 }
@@ -115,8 +115,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .verifying h2 {
@@ -150,9 +155,17 @@
 }
 
 @keyframes progress {
-  0% { width: 0%; }
-  50% { width: 70%; }
-  100% { width: 100%; }
+  0% {
+    width: 0%;
+  }
+
+  50% {
+    width: 70%;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 /* Success State */
@@ -262,6 +275,31 @@
   flex-shrink: 0;
 }
 
+.inputContainer {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.emailInput {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #374151;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border-color: #9ca3af;
+  }
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+}
+
 .actions {
   display: flex;
   flex-direction: column;
@@ -349,38 +387,38 @@
     margin: 20px;
     border-radius: 20px;
   }
-  
+
   .logo h1 {
     font-size: 1.75rem;
   }
-  
+
   .logoIcon {
     font-size: 2.5rem;
   }
-  
+
   .logoImageContainer {
     width: 100px;
     height: 100px;
   }
-  
+
   .verifying h2,
   .success h2,
   .failed h2 {
     font-size: 1.5rem;
   }
-  
+
   .verifying p,
   .success p {
     font-size: 1rem;
   }
-  
+
   .primaryButton,
   .secondaryButton,
   .outlineButton {
     padding: 14px 24px;
     font-size: 1rem;
   }
-  
+
   .actions {
     gap: 12px;
   }
@@ -391,29 +429,29 @@
     padding: 24px 20px;
     margin: 16px;
   }
-  
+
   .logo {
     margin-bottom: 32px;
   }
-  
+
   .logo h1 {
     font-size: 1.5rem;
   }
-  
+
   .logoIcon {
     font-size: 2rem;
   }
-  
+
   .logoImageContainer {
     width: 80px;
     height: 80px;
   }
-  
+
   .spinner {
     width: 60px;
     height: 60px;
   }
-  
+
   .successIcon,
   .errorIcon {
     width: 60px;
