@@ -1,0 +1,30 @@
+# Node modules
+node_modules/
+
+# Env file
+.env
+
+# Prisma files
+prisma/dev.db
+prisma/migrations/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+
+# Optional
+dist/
+build/
+
