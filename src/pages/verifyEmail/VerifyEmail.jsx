@@ -24,7 +24,7 @@ const VerifyEmail = () => {
     const controller = new AbortController();
 
     axios
-      .get(`${api}api/seller/subdomain/${subdomain}`, {
+      .get(`${api}/api/seller/subdomain/${subdomain}`, {
         signal: controller.signal,
       })
       .then((response) => {
@@ -59,7 +59,7 @@ const VerifyEmail = () => {
       try {
         console.log("Verifying email with:", { token, type, subdomain });
 
-        const apiUrl = `${api}api/email-verification/verify-${type === "customer" ? "customer" : "user"}`;
+        const apiUrl = `${api}/api/email-verification/verify-${type === "customer" ? "customer" : "user"}`;
         const response = await axios.post(apiUrl, {
           token,
           subdomain
@@ -108,7 +108,7 @@ const VerifyEmail = () => {
       setError(null);
 
 
-      const apiUrl = `${api}api/email-verification/resend-${type === "customer" ? "customer" : "user"}`;
+      const apiUrl = `${api}/api/email-verification/resend-${type === "customer" ? "customer" : "user"}`;
 
       const requestBody = {
         email,
