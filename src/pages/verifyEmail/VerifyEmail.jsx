@@ -160,7 +160,7 @@ const VerifyEmail = () => {
               <CheckCircle className={styles.successIcon} />
             </div>
             <h2>Email Verified Successfully!</h2>
-            <p>Your email has been verified. You can now sign in to your account.</p>
+            <p>Your email has been verified. You can now sign into your account.</p>
             {
               type === "customer" && <>
                 <div className={styles.countdown}>
@@ -178,7 +178,7 @@ const VerifyEmail = () => {
             {
               type === "seller" && <>
                 <div className={styles.countdown}>
-                  <span>Now You Can Start Managing Your Store by log into your Account in Mobile App...</span>
+                  <span>Now You Can Start Managing Your Store by Sign into your Account in Our Mobile Application For Sellers .</span>
                 </div>
               </>
             }
